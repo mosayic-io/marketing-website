@@ -1,64 +1,53 @@
-# Kealy Studio Community Website Template
+# Mobile App Marketing Website Template (Astro)
 
-A website template for the Kealy Studio Community built with Astro. This template provides a marketing homepage, deep link handling for mobile apps, and automatic app store redirects.
+This repository is an Astro template for a mobile app website, not a deep-link redirect project.
 
-## Features
+It includes:
+- A landing page with hero, features, product showcase, and app store CTA sections
+- Legal page templates (`/privacy`, `/terms`)
+- Support and compliance form templates:
+  - `/contact`
+  - `/support`
+  - `/data-deletion`
+- SEO metadata wiring via `astro-seo`
+- Centralized site settings in `site.config.json`
 
-- **Marketing Homepage** - A customizable landing page for your app
-- **Deep Link Support** - Configuration files for iOS Universal Links and Android App Links
-- **Smart Redirects** - Automatically redirects users to your app or the appropriate app store if the app isn't installed
-- **Platform Detection** - Detects iOS, Android, or desktop and handles each appropriately
+## What is configurable
 
-## Project Structure
+Update `site.config.json`:
 
-```
+- `app.name` and `app.tagline` for on-page branding
+- `meta.title`, `meta.description`, `meta.ogImagePath` for SEO/social previews
+- `forms.botpoisonPublicKey`, `forms.endpoint`, and `forms.redirectUrl` for form handling
+
+Note: this template ships with placeholder copy and example form endpoints. Replace all placeholder legal content and form destination settings before publishing.
+
+## Project structure
+
+```text
+├── site.config.json            # Site/app metadata + form config
 ├── public/
-│   ├── .well-known/
-│   │   ├── apple-app-site-association    # iOS Universal Links config
-│   │   └── assetlinks.json               # Android App Links config
-│   └── assets/
-├── src/
-│   ├── pages/
-│   │   ├── index.astro                   # Marketing homepage
-│   │   ├── link/index.astro              # Deep link redirect handler
-│   │   └── 404.astro
-│   ├── components/
-│   ├── layouts/
-│   └── styles/
+│   └── assets/                 # Images/backgrounds used by the template
+└── src/
+    ├── layouts/
+    │   └── BaseLayout.astro    # Global HTML shell + SEO setup
+    ├── pages/
+    │   ├── index.astro         # Marketing landing page
+    │   ├── contact.astro       # Contact form template
+    │   ├── support.astro       # Support request form template
+    │   ├── data-deletion.astro # Data deletion request template
+    │   ├── privacy.astro       # Privacy policy template
+    │   ├── terms.astro         # Terms template
+    │   └── 404.astro
+    └── styles/
+        └── global.css
 ```
 
-## Configuration
+## Scripts
 
-### Deep Link Redirect Page
-
-Update the configuration in `src/pages/link/index.astro`:
-
-```javascript
-const config = {
-  appName: "Your App Name",
-  appTagline: "Your App Tagline",
-  description: "Your app description",
-  appScheme: "yourappscheme",              // Deep link scheme (e.g., "myapp")
-  androidPackage: "com.yourcompany.yourapp",
-  appStoreUrl: "https://apps.apple.com/...",
-  playStoreUrl: "https://play.google.com/...",
-  websiteUrl: "https://yourapp.com",
-};
-```
-
-### iOS Universal Links
-
-Update `public/.well-known/apple-app-site-association` with your Apple Team ID and Bundle ID.
-
-### Android App Links
-
-Update `public/.well-known/assetlinks.json` with your package name and SHA256 certificate fingerprint.
-
-## Commands
-
-| Command           | Action                                      |
-| :---------------- | :------------------------------------------ |
-| `npm install`     | Install dependencies                        |
-| `npm run dev`     | Start local dev server at `localhost:4321`  |
-| `npm run build`   | Build production site to `./dist/`          |
-| `npm run preview` | Preview build locally before deploying      |
+| Command | Action |
+| :-- | :-- |
+| `npm install` | Install dependencies |
+| `npm run dev` | Run local dev server |
+| `npm run build` | Build static output to `dist/` |
+| `npm run preview` | Preview the production build locally |
