@@ -1,166 +1,83 @@
 ---
-// Component Imports
 import { Image } from 'astro:assets';
-import AppStoreButtons from '../components/AppStoreButtons.astro';
-import ContactCTA from '../components/ContactCTA.astro';
-import Hero from '../components/Hero.astro';
-import Skills from '../components/Skills.astro';
-// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from '../layouts/BaseLayout.astro';
+import siteConfig from '../../site.config.json';
 
 import phoneImage from '../../public/assets/phone-frame.png';
 import phoneImage2 from '../../public/assets/phone2.png';
+
+const currentYear = new Date().getFullYear();
+const { app, meta } = siteConfig;
 ---
 
-<BaseLayout>
-	<div class="stack gap-20 lg:gap-48">
-		<div class="wrapper stack gap-8 lg:gap-20">
-			<header class="hero">
-				<Hero
-					title="A Grabby Headline"
-					tagline="A short, compelling tagline that explains your app's core value proposition in one sentence."
-					align="center"
-				>
-					<AppStoreButtons
-						iosUrl="#"
-						androidUrl="#"
-					/>
-				</Hero>
-			</header>
+<BaseLayout title={meta.title} description={meta.description} image={meta.ogImagePath}>
+	<div class="page-shell">
+		<nav class="wrapper nav">
+			<a href="/" class="brand">{app.name}</a>
+			<div class="nav-links">
+				<a href="#features">Features</a>
+				<a href="#how-it-works">How it works</a>
+				<a href="#download">Download</a>
+			</div>
+		</nav>
 
-			<section id="features">
-				<Skills />
-			</section>
+		<div class="stack gap-20 lg:gap-48">
+			<div class="wrapper stack gap-8 lg:gap-20">
+				<header class="hero stack gap-4">
+					<div class="stack gap-3">
+						<h1 class="hero-title">A Grabby Headline</h1>
+						<p class="hero-tagline">{app.tagline}</p>
+					</div>
+					<div class="store-buttons large">
+						<a href="#" class="store-button" aria-label="Download on the App Store">
+							<div class="button-inner">
+								<svg class="store-icon apple-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#A8A8A8" d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+								<div class="button-text"><span class="small-text">Download on the</span><span class="large-text">App Store</span></div>
+							</div>
+						</a>
+						<a href="#" class="store-button" aria-label="Get it on Google Play">
+							<div class="button-inner">
+								<svg class="store-icon play-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M3.61 1.76L13.85 12 3.61 22.24c-.41-.53-.61-1.22-.61-1.99V3.75c0-.77.2-1.46.61-1.99z"/><path fill="#34A853" d="M17.16 8.7L4.63.46c-.35-.21-.74-.35-1.02-.3L13.85 12l3.31-3.3z"/><path fill="#FBBC04" d="M17.16 15.3L13.85 12 3.61 22.24c.28.05.67-.09 1.02-.3l12.53-6.64z"/><path fill="#EA4335" d="M21.39 10.25l-4.23-2.55L13.85 12l3.31 3.3 4.23-2.3c.75-.45 1.11-1.08 1.11-1.75s-.36-1.3-1.11-1.75z"/></svg>
+								<div class="button-text"><span class="small-text">Get it on</span><span class="large-text">Google Play</span></div>
+							</div>
+						</a>
+					</div>
+				</header>
+
+				<section id="features" class="skills box">
+					<div class="stack gap-2 lg:gap-4"><h2>Full Stack</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p></div>
+					<div class="stack gap-2 lg:gap-4"><h2>Industry Leader</h2><p>Neque viverra justo nec ultrices dui. Est ultricies integer quis auctor elit.</p></div>
+					<div class="stack gap-2 lg:gap-4"><h2>Strategy-Minded</h2><p>Urna porttitor rhoncus dolor purus non enim praesent ornare.</p></div>
+				</section>
+			</div>
+
+			<main class="wrapper stack gap-20 lg:gap-48">
+				<section id="how-it-works" class="app-showcase">
+					<div class="phone-container"><Image src={phoneImage} alt="App screenshot on phone" width={400} height={800} class="phone-image" /></div>
+					<div class="showcase-content"><h3>Discover & Explore</h3><p class="showcase-tagline">Experience a beautifully designed interface that makes it easy to accomplish your goals with just a few taps.</p></div>
+				</section>
+				<section class="app-showcase reversed">
+					<div class="phone-container"><Image src={phoneImage2} alt="Mobile app screenshot" width={400} height={800} class="phone-image" /></div>
+					<div class="showcase-content"><h3>Appealing, yet grabby</h3><p class="showcase-tagline">Our mobile app puts powerful features right in your pocket, so you can stay connected and productive from anywhere.</p></div>
+				</section>
+			</main>
+
+			<aside id="download" class="download-cta">
+				<h2>Ready to get started?</h2>
+				<p class="subtitle">Download now and join thousands of happy users.</p>
+				<div class="store-buttons">
+					<a href="#" class="store-button" aria-label="Download on the App Store"><div class="button-inner"><svg class="store-icon apple-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#A8A8A8" d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div class="button-text"><span class="small-text">Download on the</span><span class="large-text">App Store</span></div></div></a>
+					<a href="#" class="store-button" aria-label="Get it on Google Play"><div class="button-inner"><svg class="store-icon play-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M3.61 1.76L13.85 12 3.61 22.24c-.41-.53-.61-1.22-.61-1.99V3.75c0-.77.2-1.46.61-1.99z"/><path fill="#34A853" d="M17.16 8.7L4.63.46c-.35-.21-.74-.35-1.02-.3L13.85 12l3.31-3.3z"/><path fill="#FBBC04" d="M17.16 15.3L13.85 12 3.61 22.24c.28.05.67-.09 1.02-.3l12.53-6.64z"/><path fill="#EA4335" d="M21.39 10.25l-4.23-2.55L13.85 12l3.31 3.3 4.23-2.3c.75-.45 1.11-1.08 1.11-1.75s-.36-1.3-1.11-1.75z"/></svg><div class="button-text"><span class="small-text">Get it on</span><span class="large-text">Google Play</span></div></div></a>
+				</div>
+			</aside>
 		</div>
 
-		<main class="wrapper stack gap-20 lg:gap-48">
-			<section id="how-it-works" class="app-showcase">
-				<div class="phone-container">
-					<Image
-						src={phoneImage}
-						alt="App screenshot on phone"
-						width={400}
-						height={800}
-						class="phone-image"
-					/>
-				</div>
-				<div class="showcase-content">
-					<h3>Discover & Explore</h3>
-					<p class="showcase-tagline">Experience a beautifully designed interface that makes it easy to accomplish your goals with just a few taps.</p>
-				</div>
-			</section>
-
-			<section class="app-showcase reversed">
-				<div class="phone-container">
-					<Image
-						src={phoneImage2}
-						alt="Mobile app screenshot"
-						width={400}
-						height={800}
-						class="phone-image"
-					/>
-				</div>
-				<div class="showcase-content">
-					<h3>Appealing, yet grabby</h3>
-					<p class="showcase-tagline">Our mobile app puts powerful features right in your pocket, so you can stay connected and productive from anywhere.</p>
-				</div>
-			</section>
-		</main>
-
-		<ContactCTA />
+		<footer class="wrapper footer">
+			<div class="group"><p>Designed & Developed with love</p><p>&copy; Copyright {currentYear}</p></div>
+			<div class="footer-links">
+				<p class="socials"><a href="https://twitter.com">Twitter</a><a href="https://github.com">GitHub</a><a href="https://codepen.io">CodePen</a></p>
+				<p class="legal-links"><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms & Conditions</a></p>
+			</div>
+		</footer>
 	</div>
 </BaseLayout>
-
-<style>
-	.hero {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 2rem;
-		padding: 3rem 1.5rem;
-	}
-
-	@media (min-width: 50em) {
-		.hero {
-			padding: 5rem 2rem;
-		}
-	}
-
-	/* ====================================================== */
-	/* App Showcase Section */
-
-	.app-showcase {
-		display: grid;
-		grid-template-columns: 1fr;
-		align-items: center;
-		gap: 3rem;
-		padding: 3rem 0;
-	}
-
-	.phone-container {
-		display: flex;
-		justify-content: center;
-	}
-
-	:global(.phone-image) {
-		width: 320px;
-		height: auto;
-		filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.25));
-	}
-
-	.showcase-content {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		text-align: center;
-	}
-
-	.showcase-content h3 {
-		font-size: var(--text-3xl);
-		font-weight: 700;
-		color: var(--gray-0);
-	}
-
-	.showcase-tagline {
-		font-size: var(--text-lg);
-		color: var(--gray-400);
-		line-height: 1.6;
-		max-width: 45ch;
-		margin-inline: auto;
-	}
-
-	@media (min-width: 50em) {
-		.app-showcase {
-			grid-template-columns: 1fr 1fr;
-			gap: 6rem;
-			padding: 5rem 0;
-		}
-
-		.app-showcase.reversed .phone-container {
-			order: 2;
-		}
-
-		.app-showcase.reversed .showcase-content {
-			order: 1;
-		}
-
-		:global(.phone-image) {
-			width: 450px;
-		}
-
-		.showcase-content {
-			text-align: left;
-			align-self: center;
-		}
-
-		.showcase-content h3 {
-			font-size: var(--text-4xl);
-		}
-
-		.showcase-tagline {
-			margin-inline: 0;
-			font-size: var(--text-xl);
-		}
-	}
-
-</style>

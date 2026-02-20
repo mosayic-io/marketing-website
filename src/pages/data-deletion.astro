@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import siteConfig from '../../site.config.json';
+
+const { app, forms } = siteConfig;
+---
+
+<BaseLayout title={`Data Deletion Request | ${app.name}`} description="Data deletion request form template for app store compliance.">
+	<div class="form-theme">
+		<main class="wrapper form-page">
+			<div class="page-links">
+				<a href="/">Back to Home</a>
+				<a href="/privacy/">Privacy Policy</a>
+			</div>
+			<section class="form-card">
+				<p class="eyebrow">{app.name}</p>
+				<h1>Data Deletion Request</h1>
+				<p class="intro">This template page helps users request account and data deletion for app store compliance. Replace the form action before publishing.</p>
+				<p class="notice">Tip: include an expected deletion timeline and confirmation process once you connect this to your backend workflow.</p>
+				<form id="deletion-form" data-botpoison-public-key={forms.botpoisonPublicKey} action={forms.endpoint} method="post" class="form-stack">
+					<input type="hidden" name="_redirect" value={forms.redirectUrl} />
+					<input type="hidden" name="form_type" value="data_deletion" />
+					<label><span>Full Name</span><input type="text" name="name" placeholder="Your full name" required /></label>
+					<label><span>Account Email</span><input type="email" name="email" placeholder="you@example.com" required /></label>
+					<label><span>Platform</span><select name="platform" required><option value="" selected disabled>Select one</option><option>iOS</option><option>Android</option><option>Both</option></select></label>
+					<label><span>Deletion Request Details</span><textarea name="details" rows="5" placeholder="Add any identifying details needed to locate your account." required></textarea></label>
+					<button type="submit" class="btn-submit">
+						<svg id="deletion-spinner" class="spinner hidden" viewBox="0 0 512 512" aria-hidden="true"><path fill="currentColor" d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" /></svg>
+						<span id="deletion-button-text">Submit Deletion Request</span>
+					</button>
+				</form>
+			</section>
+		</main>
+	</div>
+
+	<script>
+		const form = document.getElementById('deletion-form');
+		const spinner = document.getElementById('deletion-spinner');
+		const text = document.getElementById('deletion-button-text');
+		if (form && spinner && text) {
+			form.addEventListener('submit', () => {
+				spinner.classList.remove('hidden');
+				text.textContent = 'Submitting...';
+			});
+		}
+	</script>
+</BaseLayout>

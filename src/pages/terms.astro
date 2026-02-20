@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import siteConfig from '../../site.config.json';
+
+const { app } = siteConfig;
+---
+
+<BaseLayout title={`Terms and Conditions | ${app.name}`} description={`Terms and conditions for ${app.name}.`}>
+	<main class="wrapper legal-page">
+		<header class="legal-header">
+			<p class="eyebrow">Template Legal Page</p>
+			<h1>Terms and Conditions</h1>
+			<p class="notice">You must replace this placeholder content with your own Terms and Conditions before publishing the {app.name} template site.</p>
+		</header>
+
+		<article class="legal-card stack gap-8">
+			<section class="stack gap-4"><h2>1. Acceptance of Terms</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris gravida enim id sapien cursus, ac semper dui tempus. Vestibulum porttitor, sapien nec mattis ultricies, mauris sapien malesuada risus, at feugiat metus massa et lorem.</p></section>
+			<section class="stack gap-4"><h2>2. Use of the Service</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam commodo urna eu lacus iaculis, sed facilisis orci porttitor. Integer interdum tortor sit amet eros tincidunt, vitae sodales erat congue.</p><p>Morbi in malesuada erat. Cras sit amet arcu in purus consequat rutrum. Phasellus egestas, mauris vel lacinia aliquam, justo sapien luctus magna, et volutpat mi augue in erat.</p></section>
+			<section class="stack gap-4"><h2>3. Limitation of Liability</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vehicula nisi in arcu egestas, nec sodales mi scelerisque. Aenean suscipit posuere tortor, sed luctus arcu placerat id.</p></section>
+			<section class="stack gap-4"><h2>4. Governing Law</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean suscipit, ligula et dignissim congue, augue sem dignissim lacus, eget vulputate felis neque sit amet odio.</p></section>
+		</article>
+	</main>
+</BaseLayout>

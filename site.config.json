@@ -1,0 +1,16 @@
+{
+  "app": {
+    "name": "Your App",
+    "tagline": "A short, compelling tagline that explains your app's core value proposition in one sentence."
+  },
+  "meta": {
+    "title": "Your App - Mobile App Landing Page",
+    "description": "Download our app and experience a beautifully designed interface that makes it easy to accomplish your goals.",
+    "ogImagePath": "/assets/og-image.png"
+  },
+  "forms": {
+    "botpoisonPublicKey": "pk_5c977e17-a798-40df-a248-b653ca72104e",
+    "redirectUrl": "/",
+    "endpoint": "https://submit-form.com/7OxHkYU2S"
+  }
+}
