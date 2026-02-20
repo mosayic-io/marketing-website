@@ -9,8 +9,8 @@
     "ogImagePath": "/assets/og-image.png"
   },
   "forms": {
-    "botpoisonPublicKey": "pk_5c977e17-a798-40df-a248-b653ca72104e",
+    "botpoisonPublicKey": "pk_xxxxx-xxx-xxx-xxxx-xxxxxxxxxx",
     "redirectUrl": "/",
-    "endpoint": "https://submit-form.com/7OxHkYU2S"
+    "endpoint": "https://submit-form.com/xxxxxxx"
   }
 }
