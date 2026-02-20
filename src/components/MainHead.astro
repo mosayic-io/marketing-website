@@ -1,0 +1,73 @@
+---
+import { SEO } from 'astro-seo';
+import '../styles/global.css';
+
+interface Props {
+	title?: string | undefined;
+	description?: string | undefined;
+	image?: string | undefined;
+}
+
+const {
+	title = 'Your App - Mobile App Landing Page',
+	description = 'Download our app and experience a beautifully designed interface that makes it easy to accomplish your goals.',
+	image = '/assets/og-image.png',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<meta name="generator" content={Astro.generator} />
+
+<SEO
+	title={title}
+	description={description}
+	canonical={canonicalURL.href}
+	openGraph={{
+		basic: {
+			title: title,
+			type: 'website',
+			image: image,
+		},
+		optional: {
+			description: description,
+			siteName: 'Your App',
+		},
+	}}
+	twitter={{
+		card: 'summary_large_image',
+		title: title,
+		description: description,
+		image: image,
+	}}
+/>
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap"
+	rel="stylesheet"
+/>
+<script is:inline>
+	// This code is inlined in the head to make dark mode instant & blocking.
+	const getThemePreference = () => {
+		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+			return localStorage.getItem('theme');
+		}
+		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+	};
+	const isDark = getThemePreference() === 'dark';
+	document.documentElement.classList[isDark ? 'add' : 'remove']('theme-dark');
+
+	if (typeof localStorage !== 'undefined') {
+		// Watch the document element and persist user preference when it changes.
+		const observer = new MutationObserver(() => {
+			const isDark = document.documentElement.classList.contains('theme-dark');
+			localStorage.setItem('theme', isDark ? 'dark' : 'light');
+		});
+		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+	}
+</script>

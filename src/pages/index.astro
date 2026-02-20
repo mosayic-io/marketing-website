@@ -1,0 +1,166 @@
+---
+// Component Imports
+import { Image } from 'astro:assets';
+import AppStoreButtons from '../components/AppStoreButtons.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+import Skills from '../components/Skills.astro';
+// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import phoneImage from '../../public/assets/phone-frame.png';
+import phoneImage2 from '../../public/assets/phone2.png';
+---
+
+<BaseLayout>
+	<div class="stack gap-20 lg:gap-48">
+		<div class="wrapper stack gap-8 lg:gap-20">
+			<header class="hero">
+				<Hero
+					title="A Grabby Headline"
+					tagline="A short, compelling tagline that explains your app's core value proposition in one sentence."
+					align="center"
+				>
+					<AppStoreButtons
+						iosUrl="#"
+						androidUrl="#"
+					/>
+				</Hero>
+			</header>
+
+			<section id="features">
+				<Skills />
+			</section>
+		</div>
+
+		<main class="wrapper stack gap-20 lg:gap-48">
+			<section id="how-it-works" class="app-showcase">
+				<div class="phone-container">
+					<Image
+						src={phoneImage}
+						alt="App screenshot on phone"
+						width={400}
+						height={800}
+						class="phone-image"
+					/>
+				</div>
+				<div class="showcase-content">
+					<h3>Discover & Explore</h3>
+					<p class="showcase-tagline">Experience a beautifully designed interface that makes it easy to accomplish your goals with just a few taps.</p>
+				</div>
+			</section>
+
+			<section class="app-showcase reversed">
+				<div class="phone-container">
+					<Image
+						src={phoneImage2}
+						alt="Mobile app screenshot"
+						width={400}
+						height={800}
+						class="phone-image"
+					/>
+				</div>
+				<div class="showcase-content">
+					<h3>Appealing, yet grabby</h3>
+					<p class="showcase-tagline">Our mobile app puts powerful features right in your pocket, so you can stay connected and productive from anywhere.</p>
+				</div>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.hero {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+		padding: 3rem 1.5rem;
+	}
+
+	@media (min-width: 50em) {
+		.hero {
+			padding: 5rem 2rem;
+		}
+	}
+
+	/* ====================================================== */
+	/* App Showcase Section */
+
+	.app-showcase {
+		display: grid;
+		grid-template-columns: 1fr;
+		align-items: center;
+		gap: 3rem;
+		padding: 3rem 0;
+	}
+
+	.phone-container {
+		display: flex;
+		justify-content: center;
+	}
+
+	:global(.phone-image) {
+		width: 320px;
+		height: auto;
+		filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.25));
+	}
+
+	.showcase-content {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		text-align: center;
+	}
+
+	.showcase-content h3 {
+		font-size: var(--text-3xl);
+		font-weight: 700;
+		color: var(--gray-0);
+	}
+
+	.showcase-tagline {
+		font-size: var(--text-lg);
+		color: var(--gray-400);
+		line-height: 1.6;
+		max-width: 45ch;
+		margin-inline: auto;
+	}
+
+	@media (min-width: 50em) {
+		.app-showcase {
+			grid-template-columns: 1fr 1fr;
+			gap: 6rem;
+			padding: 5rem 0;
+		}
+
+		.app-showcase.reversed .phone-container {
+			order: 2;
+		}
+
+		.app-showcase.reversed .showcase-content {
+			order: 1;
+		}
+
+		:global(.phone-image) {
+			width: 450px;
+		}
+
+		.showcase-content {
+			text-align: left;
+			align-self: center;
+		}
+
+		.showcase-content h3 {
+			font-size: var(--text-4xl);
+		}
+
+		.showcase-tagline {
+			margin-inline: 0;
+			font-size: var(--text-xl);
+		}
+	}
+
+</style>

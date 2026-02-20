@@ -1,0 +1,171 @@
+---
+// 404 Page - Redirects users to the appropriate app store
+// When users try to open a deep link without the app installed, they'll land here
+
+// Configuration - Update these values for your app
+const config = {
+  appName: "Your App Name",
+  appTagline: "Your App Tagline",
+  description: "Your app description here - explain what your app does",
+
+  // Store URLs
+  appStoreUrl: "https://apps.apple.com/us/app/your-app-name/id123456789",
+  playStoreUrl: "https://play.google.com/store/apps/details?id=com.yourcompany.yourapp",
+
+  // Fallback website URL for desktop users
+  websiteUrl: "https://yourapp.com",
+
+  // OG Image URL
+  ogImageUrl: "https://yourapp.com/og-image.png",
+};
+
+const canonicalUrl = Astro.url.href;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{config.appName} - Redirecting...</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content={config.description} />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={`${config.appName} - ${config.appTagline}`} />
+    <meta property="og:description" content={config.description} />
+    <meta property="og:image" content={config.ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={config.appName} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>{config.appName}</h1>
+      <p>Redirecting you to the right place...</p>
+      <div class="spinner" aria-label="Loading"></div>
+    </div>
+
+    <script define:vars={{ config }}>
+      (function() {
+        "use strict";
+
+        /**
+         * Detect the user's platform based on user agent
+         * @returns {"ios" | "android" | "web"}
+         */
+        function detectPlatform() {
+          const userAgent = navigator.userAgent || navigator.vendor || window.opera || "";
+
+          if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return "ios";
+          }
+
+          if (/android/i.test(userAgent)) {
+            return "android";
+          }
+
+          return "web";
+        }
+
+        /**
+         * Redirect to the appropriate store or website based on platform
+         */
+        function redirect() {
+          const platform = detectPlatform();
+
+          if (platform === "ios") {
+            window.location.href = config.appStoreUrl;
+          } else if (platform === "android") {
+            window.location.href = config.playStoreUrl;
+          } else {
+            window.location.href = config.websiteUrl;
+          }
+        }
+
+        // Set up manual redirect link
+        const manualLink = document.getElementById("manual-redirect");
+        if (manualLink) {
+          manualLink.addEventListener("click", function(e) {
+            e.preventDefault();
+            redirect();
+          });
+        }
+
+        // Auto-redirect after a short delay to show the loading state
+        setTimeout(redirect, 800);
+      })();
+    </script>
+  </body>
+</html>
+
+<style>
+  body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .container {
+    text-align: center;
+    padding: 2rem;
+    max-width: 400px;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+  }
+
+  .spinner {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 1.5rem auto;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .manual-link {
+    margin-top: 2rem;
+    font-size: 0.875rem;
+    opacity: 0.8;
+  }
+
+  .manual-link a {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .manual-link a:hover {
+    opacity: 0.9;
+  }
+</style>
