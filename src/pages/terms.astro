@@ -1,23 +1,96 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import siteConfig from '../../site.config.json';
 
-const { app } = siteConfig;
+const { app, contact } = siteConfig;
 ---
 
 <BaseLayout title={`Terms and Conditions | ${app.name}`} description={`Terms and conditions for ${app.name}.`}>
+	<SiteNav />
+
 	<main class="wrapper legal-page">
 		<header class="legal-header">
-			<p class="eyebrow">Template Legal Page</p>
+			<p class="eyebrow">{app.name}</p>
 			<h1>Terms and Conditions</h1>
-			<p class="notice">You must replace this placeholder content with your own Terms and Conditions before publishing the {app.name} template site.</p>
+			<p class="last-updated">Last updated: [Month DD, YYYY]</p>
+			<p class="notice">This is placeholder content, not legal advice. Replace every section (and everything in [brackets]) with terms that accurately describe your app before publishing.</p>
 		</header>
 
-		<article class="legal-card stack gap-8">
-			<section class="stack gap-4"><h2>1. Acceptance of Terms</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris gravida enim id sapien cursus, ac semper dui tempus. Vestibulum porttitor, sapien nec mattis ultricies, mauris sapien malesuada risus, at feugiat metus massa et lorem.</p></section>
-			<section class="stack gap-4"><h2>2. Use of the Service</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam commodo urna eu lacus iaculis, sed facilisis orci porttitor. Integer interdum tortor sit amet eros tincidunt, vitae sodales erat congue.</p><p>Morbi in malesuada erat. Cras sit amet arcu in purus consequat rutrum. Phasellus egestas, mauris vel lacinia aliquam, justo sapien luctus magna, et volutpat mi augue in erat.</p></section>
-			<section class="stack gap-4"><h2>3. Limitation of Liability</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vehicula nisi in arcu egestas, nec sodales mi scelerisque. Aenean suscipit posuere tortor, sed luctus arcu placerat id.</p></section>
-			<section class="stack gap-4"><h2>4. Governing Law</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean suscipit, ligula et dignissim congue, augue sem dignissim lacus, eget vulputate felis neque sit amet odio.</p></section>
+		<article class="legal-body">
+			<section>
+				<h2>1. Acceptance of these terms</h2>
+				<p>By downloading or using the {app.name} mobile app or this website (together, the "Service"), you agree to be bound by these Terms and Conditions. If you do not agree, please do not use the Service.</p>
+			</section>
+
+			<section>
+				<h2>2. The service</h2>
+				<p>{app.name} is [a one-paragraph description of what your app does]. We may add, change, or remove features at any time as the app evolves.</p>
+			</section>
+
+			<section>
+				<h2>3. Your account</h2>
+				<p>You need an account to use [some/all] features of {app.name}. You're responsible for keeping your login credentials secure and for all activity that happens under your account. You must be at least [13/16/18] years old to create an account.</p>
+			</section>
+
+			<section>
+				<h2>4. Acceptable use</h2>
+				<p>You agree not to misuse the Service. In particular, you will not:</p>
+				<ul>
+					<li>Use the Service for any unlawful purpose</li>
+					<li>Attempt to gain unauthorised access to our systems or other users' accounts</li>
+					<li>Interfere with or disrupt the operation of the Service</li>
+					<li>[Add restrictions specific to your app, e.g. rules about user-generated content]</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>5. Purchases and subscriptions</h2>
+				<p>[If your app is entirely free, say so and delete the rest of this section.] Some features of {app.name} require a paid subscription, billed through the App Store or Google Play. Prices are shown in the app before you buy. Subscriptions renew automatically unless cancelled through your store account settings, and refunds are handled by the relevant store's policies.</p>
+			</section>
+
+			<section>
+				<h2>6. Your content</h2>
+				<p>You keep ownership of any content you create in {app.name}. By using the Service, you grant us the limited licence needed to store, back up, and display that content to you — that's it. [Adjust if your app shares content between users.]</p>
+			</section>
+
+			<section>
+				<h2>7. Intellectual property</h2>
+				<p>The Service, including its design, code, and branding, belongs to [your name or company name] and is protected by applicable intellectual property laws. These terms don't grant you any rights to our trademarks or branding.</p>
+			</section>
+
+			<section>
+				<h2>8. Disclaimers</h2>
+				<p>The Service is provided "as is" and "as available", without warranties of any kind, express or implied. We do not guarantee that the Service will be uninterrupted, error-free, or fit for any particular purpose. [If your app touches health, finance, or safety, add the relevant disclaimer here — e.g. "not medical advice".]</p>
+			</section>
+
+			<section>
+				<h2>9. Limitation of liability</h2>
+				<p>To the maximum extent permitted by law, [your name or company name] will not be liable for any indirect, incidental, special, or consequential damages arising from your use of the Service, and our total liability for any claim will not exceed the amount you paid us in the twelve months before the claim arose.</p>
+			</section>
+
+			<section>
+				<h2>10. Termination</h2>
+				<p>You can stop using the Service and delete your account at any time — see the <a href="/data-deletion/">data deletion page</a>. We may suspend or terminate your access if you breach these terms, with notice where reasonably possible.</p>
+			</section>
+
+			<section>
+				<h2>11. Governing law</h2>
+				<p>These terms are governed by the laws of [your country or state], and any disputes will be resolved in the courts of [your jurisdiction].</p>
+			</section>
+
+			<section>
+				<h2>12. Changes to these terms</h2>
+				<p>We may update these terms from time to time. When we do, we'll update the date at the top of this page and, for significant changes, notify you in the app. Continuing to use the Service after changes take effect means you accept the updated terms.</p>
+			</section>
+
+			<section>
+				<h2>13. Contact</h2>
+				<p>Questions about these terms? Email us at <a href={`mailto:${contact.email}`}>{contact.email}</a>.</p>
+			</section>
 		</article>
 	</main>
+
+	<SiteFooter />
 </BaseLayout>

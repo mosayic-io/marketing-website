@@ -2,18 +2,20 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import siteConfig from '../../site.config.json';
 
+// Unknown URLs act as a smart store redirect: iOS visitors go to the App
+// Store, Android visitors to Google Play, everyone else back to the homepage.
 const redirectConfig = {
-	appStoreUrl: 'https://apps.apple.com/us/app/your-app-name/id123456789',
-	playStoreUrl: 'https://play.google.com/store/apps/details?id=com.yourcompany.yourapp',
+	appStoreUrl: siteConfig.links.appStoreUrl,
+	playStoreUrl: siteConfig.links.playStoreUrl,
 	websiteUrl: siteConfig.url,
 };
 ---
 
-<BaseLayout title={`${siteConfig.app.name} - Redirecting...`} description={siteConfig.meta.description} image={siteConfig.meta.ogImagePath} noindex>
+<BaseLayout title={`${siteConfig.app.name} — Redirecting...`} description={siteConfig.meta.description} image={siteConfig.meta.ogImagePath} noindex>
 	<div class="redirect-page">
-		<div class="redirect-container">
+		<div class="redirect-card">
 			<h1>{siteConfig.app.name}</h1>
-			<p>Redirecting you to the right place...</p>
+			<p>Taking you to the right place...</p>
 			<div class="redirect-spinner" aria-label="Loading"></div>
 		</div>
 	</div>

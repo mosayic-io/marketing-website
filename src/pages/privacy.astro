@@ -1,23 +1,94 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import siteConfig from '../../site.config.json';
 
-const { app } = siteConfig;
+const { app, contact } = siteConfig;
 ---
 
 <BaseLayout title={`Privacy Policy | ${app.name}`} description={`Privacy policy for ${app.name}.`}>
+	<SiteNav />
+
 	<main class="wrapper legal-page">
 		<header class="legal-header">
-			<p class="eyebrow">Template Legal Page</p>
+			<p class="eyebrow">{app.name}</p>
 			<h1>Privacy Policy</h1>
-			<p class="notice">You must replace this placeholder content with your own Privacy Policy before publishing the {app.name} template site.</p>
+			<p class="last-updated">Last updated: [Month DD, YYYY]</p>
+			<p class="notice">This is placeholder content, not legal advice. Replace every section (and everything in [brackets]) with a policy that accurately describes your app before publishing.</p>
 		</header>
 
-		<article class="legal-card stack gap-8">
-			<section class="stack gap-4"><h2>1. Information We Collect</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae aliquet nibh. Integer non sem mi. Donec sollicitudin nunc id ipsum hendrerit, eu tincidunt purus pulvinar.</p></section>
-			<section class="stack gap-4"><h2>2. How We Use Information</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc feugiat, eros nec dictum vulputate, nisl mauris placerat nulla, non convallis ipsum velit et sapien.</p><p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam erat volutpat. Integer tincidunt, lectus et accumsan aliquet, nibh eros tincidunt est, quis interdum nisi augue eget orci.</p></section>
-			<section class="stack gap-4"><h2>3. Data Retention</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lobortis gravida est, sed viverra turpis malesuada non. Quisque nec justo et turpis fermentum semper.</p></section>
-			<section class="stack gap-4"><h2>4. Contact</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet dolor vel est tristique, at eleifend massa laoreet. Donec in arcu finibus, suscipit velit sed, facilisis erat.</p></section>
+		<article class="legal-body">
+			<section>
+				<h2>1. Who we are</h2>
+				<p>{app.name} is operated by [your name or company name], based in [country]. This policy explains what information we collect when you use the {app.name} mobile app and this website, how we use it, and the choices you have.</p>
+			</section>
+
+			<section>
+				<h2>2. Information we collect</h2>
+				<p>We collect the following information when you use {app.name}:</p>
+				<ul>
+					<li><strong>Account information</strong> — your email address and display name when you create an account [adjust to match your sign-up flow, e.g. Google or Apple sign-in].</li>
+					<li><strong>Content you create</strong> — [describe the data users create in your app, e.g. notes, entries, photos].</li>
+					<li><strong>Usage data</strong> — [describe any analytics you collect, e.g. screens visited and feature usage, and name the analytics tool].</li>
+					<li><strong>Device information</strong> — [e.g. device model, OS version, and crash logs, if you collect them].</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>3. How we use your information</h2>
+				<p>We use the information we collect to:</p>
+				<ul>
+					<li>Provide, maintain, and improve the app</li>
+					<li>Keep your data in sync across your devices</li>
+					<li>Respond to your support requests</li>
+					<li>[Add or remove purposes to match what you actually do]</li>
+				</ul>
+				<p>We do not sell your personal information to third parties.</p>
+			</section>
+
+			<section>
+				<h2>4. Third-party services</h2>
+				<p>{app.name} relies on a small number of third-party services to function. Each processes data in accordance with its own privacy policy:</p>
+				<ul>
+					<li>[e.g. Supabase — authentication and database hosting]</li>
+					<li>[e.g. Google Cloud — backend infrastructure]</li>
+					<li>[e.g. Expo — app updates and push notifications]</li>
+					<li>[List every third-party service your app actually uses]</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>5. Data retention and deletion</h2>
+				<p>We keep your data for as long as your account is active. You can request deletion of your account and all associated data at any time — see our <a href="/data-deletion/">data deletion page</a> for how. Deletion requests are completed within [30] days.</p>
+			</section>
+
+			<section>
+				<h2>6. Security</h2>
+				<p>Your data is encrypted in transit using TLS and at rest by our hosting providers. [Describe any additional security measures relevant to your app.] No method of transmission or storage is completely secure, but we work to protect your information using industry-standard practices.</p>
+			</section>
+
+			<section>
+				<h2>7. Children's privacy</h2>
+				<p>{app.name} is not directed at children under [13/16], and we do not knowingly collect personal information from them. If you believe a child has provided us with personal information, please contact us and we will delete it.</p>
+			</section>
+
+			<section>
+				<h2>8. Your rights</h2>
+				<p>Depending on where you live, you may have the right to access, correct, export, or delete the personal information we hold about you. To exercise any of these rights, email us at <a href={`mailto:${contact.email}`}>{contact.email}</a>. [If you serve EU/UK users, describe your GDPR lawful bases and their right to complain to a supervisory authority.]</p>
+			</section>
+
+			<section>
+				<h2>9. Changes to this policy</h2>
+				<p>We may update this policy from time to time. When we do, we'll update the date at the top of this page and, for significant changes, notify you in the app.</p>
+			</section>
+
+			<section>
+				<h2>10. Contact</h2>
+				<p>If you have any questions about this policy or how we handle your data, email us at <a href={`mailto:${contact.email}`}>{contact.email}</a>.</p>
+			</section>
 		</article>
 	</main>
+
+	<SiteFooter />
 </BaseLayout>

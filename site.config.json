@@ -1,17 +1,19 @@
 {
   "app": {
     "name": "Your App",
-    "tagline": "A short, compelling tagline that explains your app's core value proposition in one sentence."
+    "tagline": "One clear sentence about what your app does and why it makes life better."
   },
   "url": "https://yourapp.com",
-  "meta": {
-    "title": "Your App - Mobile App Landing Page",
-    "description": "Download our app and experience a beautifully designed interface that makes it easy to accomplish your goals.",
-    "ogImagePath": "/assets/og-image.png"
+  "contact": {
+    "email": "hello@yourapp.com"
   },
-  "forms": {
-    "botpoisonPublicKey": "pk_xxxxx-xxx-xxx-xxxx-xxxxxxxxxx",
-    "redirectUrl": "/",
-    "endpoint": "https://submit-form.com/xxxxxxx"
+  "links": {
+    "appStoreUrl": "https://apps.apple.com/us/app/your-app-name/id123456789",
+    "playStoreUrl": "https://play.google.com/store/apps/details?id=com.yourcompany.yourapp"
+  },
+  "meta": {
+    "title": "Your App — A short, memorable strapline",
+    "description": "Download Your App and see how much easier the thing you do every day can be. Free on iOS and Android.",
+    "ogImagePath": "/assets/og-image.png"
   }
 }
