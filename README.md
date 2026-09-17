@@ -32,7 +32,10 @@ top of `src/styles/global.css`. Everything else follows.
 **3. Rewrite the placeholder copy.** All landing page copy in
 `src/pages/index.astro` is generic on purpose — describe your actual app, or
 hand the file to an AI assistant and ask it to. Swap the phone mockups in
-`public/assets/` for screenshots of your app.
+`src/assets/` for screenshots of your app. Keep them in `src/assets/`, not
+`public/`: the page imports them, and Astro's `<Image>` resizes and converts
+an imported image at build time, while anything in `public/` is copied to the
+site as-is, unoptimised.
 
 **4. Replace the legal placeholders.** `/privacy` and `/terms` are structured
 skeletons, not legal advice. Fill in everything in `[brackets]` and make sure
@@ -43,9 +46,9 @@ each section accurately describes what your app does before publishing.
 ```text
 ├── site.config.json            # Site/app metadata + contact + store links
 ├── public/
-│   ├── favicon.svg             # Replace with your own mark
-│   └── assets/                 # Phone mockup images
+│   └── favicon.svg             # Replace with your own mark
 └── src/
+    ├── assets/                 # Phone mockup images (imported, optimised by <Image>)
     ├── components/
     │   ├── SiteNav.astro       # Shared sticky navigation
     │   ├── SiteFooter.astro    # Shared footer
